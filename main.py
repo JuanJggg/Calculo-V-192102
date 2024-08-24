@@ -16,18 +16,57 @@ def ResolMatriz(rowsm1,rowsm2,columnsm1,columnsm2):
     fila2 = int(rowsm2)
     columna2 = int(columnsm2)
 
+    # Crear un Frame para contener todo (opcional, pero ayuda a mantener la estructura)
+    main_frame = customtkinter.CTkFrame(app)
+    main_frame.grid(row=0, column=0, padx=20, pady=20)
+
+    # Configurar la ventana o el frame principal para centrar todo
+    app.grid_rowconfigure(0, weight=1)
+    app.grid_columnconfigure(0, weight=1)
+
+    main_frame.grid_rowconfigure(0, weight=1)
+    main_frame.grid_columnconfigure([0, 1, 2], weight=1)
+
+    # Primer Frame para la primera matriz
+    frame1 = customtkinter.CTkFrame(main_frame)
+    frame1.grid(row=0, column=0, padx=10, pady=10)
+
+    # Segundo Frame para la segunda matriz
+    frame2 = customtkinter.CTkFrame(main_frame)
+    frame2.grid(row=0, column=2, padx=10, pady=10)
+
+    # Tercer Frame para la matriz resultante
+    frame3 = customtkinter.CTkFrame(main_frame)
+    frame3.grid(row = 1, column = 0, columnspan = 3, padx = 10, pady = 10)
+
+    # Crear y colocar etiquetas para cada matriz
+    label1 = customtkinter.CTkLabel(main_frame, text="Matriz 1", font=("Arial", 16))
+    label1.grid(row=2, column=0, padx=10, pady=1)
+
+    label2 = customtkinter.CTkLabel(main_frame, text="Matriz 2", font=("Arial", 16))
+    label2.grid(row=2, column=2, padx=10, pady=1)
+
+    label_result = customtkinter.CTkLabel(main_frame, text="Matriz Resultante", font=("Arial", 16))
+    label_result.grid(row=3, column=0, columnspan=3, padx=10, pady=1)
+
+
     for i in range(fila1):
         for j in range(columna1):
-            boton = customtkinter.CTkButton(app, text=f"({i}, {j})")
-            boton.grid(row=i, column=j, padx=10, pady=10)
+            boton = customtkinter.CTkEntry(frame1, placeholder_text=f"({i}, {j})", placeholder_text_color= "white", justify = "center" )
+            boton.grid(row=i, column=j, padx=5, pady=20)
     
     for a in range(fila2):
         for b in range(columna2):
-            boton = customtkinter.CTkButton(app, text=f"({a}, {b})")
-            boton.grid(row=a, column=(b+j+12), padx=10, pady=10)
-                
-    
+            boton = customtkinter.CTkEntry(frame2, placeholder_text=f"({a}, {b})", placeholder_text_color= "white", justify = "center" )
+            boton.grid(row=a, column=b, padx=5, pady=(20))  
 
+    label = customtkinter.CTkLabel(main_frame, text="+", font=("Arial",24)) 
+    label.grid(row = 0, column = 1, padx = 10, pady = 10)
+
+    for k in range(fila1):
+        for l in range(columna1):
+            label = customtkinter.CTkLabel(frame3, text="h", justify =  "center")
+            label.grid(row = k, column = l, padx = 5, pady = 5)
 
 def comienzo():
     label1 = customtkinter.CTkLabel(app, text="Ingresa la cantidad de filas y columnas de la primera matriz", font=("Arial",20))
@@ -46,6 +85,7 @@ def comienzo():
     
 
     def empezarboton():
+
         rowsm1 = inputm1.get()
         columnsm1 = inputm2.get()
         rowsm2 = inputm3.get()
