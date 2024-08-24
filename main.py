@@ -39,15 +39,11 @@ def ResolMatriz(rowsm1,rowsm2,columnsm1,columnsm2):
     frame3 = customtkinter.CTkFrame(main_frame)
     frame3.grid(row = 1, column = 0, columnspan = 3, padx = 10, pady = 10)
 
-    # Crear y colocar etiquetas para cada matriz
-    label1 = customtkinter.CTkLabel(main_frame, text="Matriz 1", font=("Arial", 16))
-    label1.grid(row=2, column=0, padx=10, pady=1)
+    button1 = customtkinter.CTkButton(main_frame,text="Resolver")
+    button1.grid(row=3, column=0, columnspan=2, padx=10, pady=1)
 
-    label2 = customtkinter.CTkLabel(main_frame, text="Matriz 2", font=("Arial", 16))
-    label2.grid(row=2, column=2, padx=10, pady=1)
-
-    label_result = customtkinter.CTkLabel(main_frame, text="Matriz Resultante", font=("Arial", 16))
-    label_result.grid(row=3, column=0, columnspan=3, padx=10, pady=1)
+    button2 = customtkinter.CTkButton(main_frame,text="Volver a Inicio",command=comienzo)
+    button2.grid(row=3, column=1, columnspan=3, padx=10, pady=1)
 
 
     for i in range(fila1):
@@ -69,6 +65,9 @@ def ResolMatriz(rowsm1,rowsm2,columnsm1,columnsm2):
             label.grid(row = k, column = l, padx = 5, pady = 5)
 
 def comienzo():
+    for widget in app.winfo_children():
+        widget.destroy()
+    
     label1 = customtkinter.CTkLabel(app, text="Ingresa la cantidad de filas y columnas de la primera matriz", font=("Arial",20))
     label1.place( relx = 0.5, rely = 0.35, anchor = customtkinter.CENTER)
     inputm1 = customtkinter.CTkEntry(app, placeholder_text="Ingresa las filas", width=180)
