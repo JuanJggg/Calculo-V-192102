@@ -8,6 +8,7 @@ app.geometry("1024x720")
 app.title("Suma y resta de matrices 192102")
 
 def ResolMatriz(rowsm1,rowsm2,columnsm1,columnsm2):
+
     for widget in app.winfo_children():
         widget.destroy()
     
@@ -45,26 +46,48 @@ def ResolMatriz(rowsm1,rowsm2,columnsm1,columnsm2):
     button2 = customtkinter.CTkButton(main_frame,text="Volver a Inicio",command=comienzo)
     button2.grid(row=3, column=1, columnspan=3, padx=10, pady=1)
 
+    
+
+    primeraMatriz = [[0 for _ in range(columna1)] for _ in range(fila1)]
+    segundaMatriz = [[0 for _ in range(columna1)] for _ in range(fila1)]
+    TerceraMatriz = [[0 for _ in range(columna1)] for _ in range(fila1)]
 
     for i in range(fila1):
         for j in range(columna1):
             boton = customtkinter.CTkEntry(frame1, placeholder_text=f"({i}, {j})", placeholder_text_color= "white", justify = "center" )
             boton.grid(row=i, column=j, padx=5, pady=20)
+            primeraMatriz[i][j] = boton.get()
     
     for a in range(fila2):
         for b in range(columna2):
             boton = customtkinter.CTkEntry(frame2, placeholder_text=f"({a}, {b})", placeholder_text_color= "white", justify = "center" )
-            boton.grid(row=a, column=b, padx=5, pady=(20))  
+            boton.grid(row=a, column=b, padx=5, pady=(20))
+            segundaMatriz[a][b] = boton.get()  
 
-    label = customtkinter.CTkLabel(main_frame, text="+", font=("Arial",24)) 
-    label.grid(row = 0, column = 1, padx = 10, pady = 10)
+    def sumar():
+        label = customtkinter.CTkLabel(main_frame, text=" + ", font=("Arial",24)) 
+        label.grid(row = 0, column = 1, padx = 10, pady = 10)
+
+    def restar():
+        label = customtkinter.CTkLabel(main_frame, text=" - ", font=("Arial",24)) 
+        label.grid(row = 0, column = 1, padx = 10, pady = 10)
 
     for k in range(fila1):
         for l in range(columna1):
             label = customtkinter.CTkLabel(frame3, text="h", justify =  "center")
             label.grid(row = k, column = l, padx = 5, pady = 5)
 
+    button3 = customtkinter.CTkButton(main_frame,text="Sumar", command=sumar)
+    button3.grid(row = 1, column = 1, columnspan=3, padx=10, pady=1)
+
+    button4 = customtkinter.CTkButton(main_frame,text="Restar", command=restar)
+    button4.grid(row=1, column=0, columnspan=2, padx=10, pady=1)
+    
+    
+
+
 def comienzo():
+    
     for widget in app.winfo_children():
         widget.destroy()
     
@@ -96,7 +119,7 @@ def comienzo():
             alert = customtkinter.CTkToplevel(app)
             alert.title("¡Error!")
             alert.geometry("500x250")
-            message = customtkinter.CTkLabel(alert, text="Para poder sumar dos matrcies deben tener igual tamaño n*n")
+            message = customtkinter.CTkLabel(alert, text="Para poder sumar o restar dos matrcies deben tener igual tamaño n*n")
             message.place( relx = 0.5, rely = 0.5, anchor = customtkinter.CENTER)
             cerrar = customtkinter.CTkButton(alert, text="Volver a intentar", command=alert.destroy)
             cerrar.place( relx = 0.5, rely = 0.6, anchor = customtkinter.CENTER)
