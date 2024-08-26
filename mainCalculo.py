@@ -51,7 +51,7 @@ def ResolMatriz(rowsm1, rowsm2, columnsm1, columnsm2):
         for j in range(columna1):
             entrada = customtkinter.CTkEntry(frame1, placeholder_text=f"({i}, {j})", placeholder_text_color="white", justify="center")
             entrada.grid(row=i, column=j, padx=5, pady=20)
-            entrada.insert(0, "0")
+            entrada.insert(0,"")
             filaRone.append(entrada)
         entrya.append(filaRone)
     
@@ -60,7 +60,7 @@ def ResolMatriz(rowsm1, rowsm2, columnsm1, columnsm2):
         for b in range(columna2):
             entrada = customtkinter.CTkEntry(frame2, placeholder_text=f"({a}, {b})", placeholder_text_color="white", justify="center")
             entrada.grid(row=a, column=b, padx=5, pady=20)
-            entrada.insert(0, "0") 
+            entrada.insert(0,"") 
             filaRtwo.append(entrada)
         entryb.append(filaRtwo)
 
