@@ -91,7 +91,7 @@ def ResolMatriz(rowsm1, rowsm2, columnsm1, columnsm2):
         for i in range(fila1):
             for j in range(columna1):
                 entrada = customtkinter.CTkEntry(frame3, justify="center")
-                entrada.grid(row=i, column=j, padx=5, pady=5)
+                entrada.grid(row=i, column=j, padx=5, pady=20)
                 entrada.insert(0, str(matriz[i][j]))
 
     def sumar():
